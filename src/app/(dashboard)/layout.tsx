@@ -1,20 +1,16 @@
-import { auth } from "@/auth";
 export default async function DashboardLayout({
-  children,
   sideBar,
   content,
   controllers,
   header,
   rightdock,
 }: {
-  children: React.ReactNode;
   sideBar: React.ReactNode;
   content: React.ReactNode;
   controllers: React.ReactNode;
   header: React.ReactNode;
   rightdock: React.ReactNode;
 }) {
-  const session = await auth();
   return (
     <div className="text-white flex flex-col max-h-screen h-screen gap-2 bg-black">
       {header}

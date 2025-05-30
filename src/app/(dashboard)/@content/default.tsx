@@ -1,14 +1,14 @@
-import { Play } from "lucide-react";
-import Image from "next/image";
+// import { Play } from "lucide-react";
+// import Image from "next/image";
 import PlaylistCard from "@/Features/playlist/components/playlistcard";
 import PlayListTitle from "@/Features/playlist/components/PlayListTitle";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+// import {
+//   Carousel,
+//   CarouselContent,
+//   CarouselItem,
+//   CarouselNext,
+//   CarouselPrevious,
+// } from "@/components/ui/carousel";
 function content() {
   return (
     <div>

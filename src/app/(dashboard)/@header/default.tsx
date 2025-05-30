@@ -1,5 +1,4 @@
 import React from "react";
-import Logo from "./logo";
 import { House, ArrowDown, Bell } from "lucide-react";
 import SearchInput from "@/Features/header/components/searchInput";
 import Image from "next/image";

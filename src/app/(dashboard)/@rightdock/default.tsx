@@ -1,6 +1,5 @@
 import { X } from "lucide-react";
-import Image from "next/image";
-import { Play, Pause } from "lucide-react";
+
 import QueueCard from "@/Features/queue/components/queuecard";
 function rightDock() {
   const SongSelected = true;
