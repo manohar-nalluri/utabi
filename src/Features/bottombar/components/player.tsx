@@ -17,13 +17,20 @@ import {
   Pause,
   Infinity,
 } from "lucide-react";
+import { RightDock } from "@/Features/bottombar/models/bottomBarModel";
+import {
+  changeSelectionAndToogle,
+  getSelectedName,
+} from "@/Features/bottombar/store/bottomSideSectionSlice";
 import { useRouter, usePathname } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "@/lib/storeHook";
 const Player = () => {
   const router = useRouter();
   const pathname = usePathname();
   const playStatus = false;
-  const [selected, setSelected] = useState("");
   const [volume, setVolume] = useState(100);
+  const dispatch = useAppDispatch();
+  const selectedName = useAppSelector(getSelectedName);
   return (
     <div
       className="h-24 flex justify-between items-center
@@ -72,20 +79,22 @@ const Player = () => {
       </div>
       <div className="hidden lg:flex items-center gap-2 opacity-75">
         <MonitorPlay
-          className={`h-5 w-5 hover:cursor-pointer ${selected == "video" ? "text-[#1ed760]" : ""}`}
-          onClick={() => setSelected("video")}
+          className={`h-5 w-5 hover:cursor-pointer ${selectedName == RightDock.VIDEO ? "text-[#1ed760]" : ""}`}
+          onClick={() => dispatch(changeSelectionAndToogle(RightDock.VIDEO))}
         />
         <MicVocal
           className={`h-5 w-5 hover:cursor-pointer ${pathname == "/lyrics" ? "text-[#1ed760]" : ""}`}
           onClick={() => {
-            if (pathname != "lyrics") {
+            if (pathname !== "lyrics") {
               router.push("/lyrics");
+              return;
             }
+            router.push("/ff");
           }}
         />
         <ScrollText
-          className={`h-5 w-5 hover:cursor-pointer ${selected == "queue" ? "text-[#1ed760]" : ""}`}
-          onClick={() => setSelected("queue")}
+          className={`h-5 w-5 hover:cursor-pointer ${selectedName == RightDock.QUEUE ? "text-[#1ed760]" : ""}`}
+          onClick={() => dispatch(changeSelectionAndToogle(RightDock.QUEUE))}
         />
         {volume > 70 && (
           <Volume2
@@ -113,7 +122,12 @@ const Player = () => {
             }}
           />
         )}
-        <MonitorSmartphone className="h-5 w-5 hover:cursor-pointer" />
+        <MonitorSmartphone
+          className={`h-5 w-5 hover:cursor-pointer ${selectedName == RightDock.CONNECTED_DEVICES ? "text-[#1ed760]" : ""}`}
+          onClick={() =>
+            dispatch(changeSelectionAndToogle(RightDock.CONNECTED_DEVICES))
+          }
+        />
       </div>
     </div>
   );
